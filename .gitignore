@@ -1,0 +1,7 @@
+# git don't track these my prend
+.env
+schema.yml
+db.sqlite3
+.DS_Store
+images/
+staticfiles/

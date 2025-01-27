@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+    db:
+        image: postgres
+        restart: always
+        environment:
+            # this is only for local dev mode
+            POSTGRES_DB: yourdb
+            POSTGRES_HOST_AUTH_METHOD: "trust"
+        ports:
+            - "5432:5432"
+    web:
+        build: .
+        volumes:
+            - .:/usr/src/app
+        ports:
+            - "8000:8000"
+
+# local dev for frontend kinda hard to containerize so many error

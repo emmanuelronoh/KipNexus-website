@@ -1,0 +1,31 @@
+.divider-1,
+.divider-2,
+.divider-3,
+.divider-4 {
+  z-index: 100;
+  position: absolute;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(213, 230, 255, 0.4) 100%);
+  background-blend-mode: multiply;
+  width: 100%;
+  height: 2em;
+}
+
+.divider-2 {
+  bottom: -3em;
+  opacity: 0.6;
+  height: 1em;
+
+}
+
+.divider-3 {
+  bottom: -4em;
+  opacity: 0.4;
+  height: 0.5em;
+}
+
+.divider-4 {
+  bottom: -5em;
+  opacity: 0.3;
+  height: 0.25em;
+}

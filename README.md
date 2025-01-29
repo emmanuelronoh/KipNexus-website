@@ -479,7 +479,7 @@ curl --location --request GET 'http://localhost:8000/courses?page=1&paginate=tru
     {
         "id": 56,
         "average_rating": 1.0,
-        "created_by_name": "jericho1050",
+        "created_by_name": "Emmanuel Kipkirui",
         "difficulty_display": "Beginner",
         "enrollee_count": 0,
         "title": "TEST",
@@ -781,7 +781,7 @@ const router = createBrowserRouter([
 1. Clone the repo with
 
 ```bash
-git clone https://github.com/jericho1050/KipNexus.git
+git clone https://github.com/emmanuelronoh/KipNexus.git
 ```
 
 2. Change to the KipNexus directory, then Create Your own Virtual Enviroment
@@ -908,7 +908,7 @@ so it would look like this
 
 ```python
 POSTGRES_DB="mydatabase"
-POSTGRES_USER="jericho1050"
+POSTGRES_USER="kipkiruiventures"
 POSTGRES_PASSWORD="yourpassword"
 ```
 

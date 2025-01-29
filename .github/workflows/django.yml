@@ -8,7 +8,7 @@ jobs:
       db:
         image: postgres
         env:
-          POSTGRES_USER: jericho1050
+          POSTGRES_USER: emmanuelronoh
           POSTGRES_PASSWORD: secret
           POSTGRES_DB: mydatabase
         ports:

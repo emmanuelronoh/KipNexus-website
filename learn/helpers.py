@@ -7,7 +7,7 @@ from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyMod
 from rest_framework.pagination import PageNumberPagination
 from .models import User, Course
 from .serializers import *
-from Aestheitos import settings
+from KipNexus import settings
 
 # Documentation for Creating Custom Mixins
 # https://www.django-rest-framework.org/api-guide/generic-views/#creating-custom-mixins

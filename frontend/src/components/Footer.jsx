@@ -13,7 +13,7 @@ export default function Footer() {
       >
         <Grid item xs={2} md={2} lg={4}>
           <Typography variant='body2' fontSize={'large'}>
-            © Aestheitos
+            © KipNexus
           </Typography>
         </Grid>
         <Grid item xs={2} md={1} lg={2}>

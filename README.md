@@ -1,4 +1,4 @@
-# Aestheitos
+# KipNexus
 
 As someone who is a fitness and calisthenic enthusiast, I've set my goal of building a web app around my passion.There are many beginners who make lots of mistakes when starting their journey in fitness or calisthenics and don't know where to start. from a poorly structured workout or bad workout routine. That's the primary reason why I've wanted to create a learning management system or a learning platform particularly aimed at calisthenics and fitness.
 
@@ -96,7 +96,7 @@ Based on my explanations and everything that I've included, I would say that my 
 
 The spec is avaiable on SwaggerHub.
 
-You can find the [REST API documentation here](https://app.swaggerhub.com/apis-docs/jerichokunserrano_gmail.com/AestheitosLMS/1.0.0).
+You can find the [REST API documentation here](https://app.swaggerhub.com/apis-docs/jerichokunserrano_gmail.com/KipNexusLMS/1.0.0).
 
 ## File Structure
 
@@ -521,7 +521,7 @@ Used [tree-cli](https://github.com/MrRaindrop/tree-cli?tab=readme-ov-file)
 ```
 
 ```None
-/Aestheitos/frontend
+/KipNexus/frontend
 ├── README.md
 ├── cypress
 |  ├── downloads
@@ -679,7 +679,7 @@ If you want a detailed and interactive comprehension of my components, I would r
 Go  to the frontend directory
 
 ```node
-aestheitos % cd frontend
+KipNexus % cd frontend
 ```
 
 once you're in here
@@ -781,51 +781,51 @@ const router = createBrowserRouter([
 1. Clone the repo with
 
 ```bash
-git clone https://github.com/jericho1050/Aestheitos.git
+git clone https://github.com/jericho1050/KipNexus.git
 ```
 
-2. Change to the aestheitos directory, then Create Your own Virtual Enviroment
+2. Change to the KipNexus directory, then Create Your own Virtual Enviroment
 
 ```bash
-aestheitos % virtualenv env
+KipNexus % virtualenv env
 ```
 
 or
 
 ```bash
-aestheitos % python -m env
+KipNexus % python -m env
 ```
 
 3. Activate env
 
 ```bash
-aestheitos %  source env/bin/activate
+KipNexus %  source env/bin/activate
 ```
 
 4. download the dependencies in requirements.txt
 
 ```bash
-(env) aestheitos % pip install -r requirements.txt
+(env) KipNexus % pip install -r requirements.txt
 ```
 
 5. makemigrations and migrate, to apply and create the **sqlite3.db** (if you want postgresql then go to the PostgreSQL section)
 
 ```bash
-(env) aestheitos % python manage.py makemigrations learn
-(env) aestheitos % python manage.py migrate
+(env) KipNexus % python manage.py makemigrations learn
+(env) KipNexus % python manage.py migrate
 ```
 
 6. Run the django local dev server
 
 ```bash
-(env) aestheitos % python manage.py runserver
+(env) KipNexus % python manage.py runserver
 ```
 
 7. Change to the frontend directory, then create a `.env` file
 
 your file structure should look like this
 
-/Aestheitos/frontend
+/KipNexus/frontend
 ├── README.md
 ├── cypress
 ├── cypress.config.js
@@ -868,11 +868,11 @@ option 2 requires [homebrew](https://brew.sh) (a package manager)
 Make sure you have Docker Desktop installed and is opened
 
 ```yaml
-(env) aestheitos % docker-compose build
+(env) KipNexus % docker-compose build
 ```
 
 ```yaml
-(env) aestheitos % docker-compose up
+(env) KipNexus % docker-compose up
 ```
 
 That's it. Now you can go to step 7 in the installation section.
@@ -884,14 +884,14 @@ That's it. Now you can go to step 7 in the installation section.
 - in your terminal deactivate the virtual enviroment first
   
 ```bash
-(env) aestheitos % deactivate
+(env) KipNexus % deactivate
 ```
 
 - in the base directory, create a enviroment variable ( `.env` file )
 
 so it would look like this
 
-├── Aestheitos
+├── KipNexus
 ├── Dockerfile
 ├── LICENSE
 ├── README.md
@@ -912,7 +912,7 @@ POSTGRES_USER="jericho1050"
 POSTGRES_PASSWORD="yourpassword"
 ```
 
-- also in `settings.py` in Aestheitos directory. Follow this code here
+- also in `settings.py` in KipNexus directory. Follow this code here
   
 ```python
 # If you're interested in using PostgreSQL then use this
@@ -939,7 +939,7 @@ DATABASES = {
 - Download postgrew with homebrew
 
 ```bash
-aestheitos % brew install postgresql@16
+KipNexus % brew install postgresql@16
 ```
 
 - after installation
@@ -952,31 +952,31 @@ If you need to have postgresql@16 first in your PATH, run:
 - then create first the database
 
 ```bash
-aestheitos % createdb mydatabase
+KipNexus % createdb mydatabase
 ```
 
 - then create a role, i.e., the user.
 
 ```bash
-aestheitos % createuser -s youruser 
+KipNexus % createuser -s youruser 
 ```
 
 - then try to restart postgre service
   
 ```bash
-aestheitos % brew services restart postgresql
+KipNexus % brew services restart postgresql
 ```
 
 - you can now activate the virutal enviroment and start the django server
 
 ```bash
-(env) aestheitos % python manage.py runserver
+(env) KipNexus % python manage.py runserver
 ```
 
 - In a new terminal, you can also use the job scheduler (CRON). The purpose of this is to declutter draft courses that the user didn't submit for a reasonable number of days, as well as courses that were rejected. so those will be deleted.
 
 ```bash
-(env) aestheitos % python manage.py runapscheduler
+(env) KipNexus % python manage.py runapscheduler
 ```
 
 ---
@@ -986,7 +986,7 @@ aestheitos % brew services restart postgresql
 ### Django test
 
 ```bash
-(env) aestheitos % python manage.py test
+(env) KipNexus % python manage.py test
 ```
 
 ### Cypress

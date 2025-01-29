@@ -10,7 +10,7 @@ describe('Responsive Appbar State', ()=> {
     })
 
     it("has the header of the brand", () => {
-        cy.contains('Aestheitos');
+        cy.contains('KipNexus');
     })
 
     it("has the sign in link when an annonymous user", () => {

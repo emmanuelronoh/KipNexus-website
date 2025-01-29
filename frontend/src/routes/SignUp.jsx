@@ -1,12 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -14,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthDispatchContext } from '../contexts/authContext';
-// import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -38,33 +33,40 @@ export default function SignUp() {
   const navigate = useNavigate();
   const [isInvalid, setIsInvalid] = React.useState(false);
   const [status, setStatus] = React.useState('typing');
+  const [validationErrors, setValidationErrors] = React.useState({});
   const dispatch = React.useContext(AuthDispatchContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setStatus('submitting');
+    setValidationErrors({});  // Clear previous validation errors
 
     // Get form elements
     const form = event.currentTarget;
     const inputs = form.elements;
 
-    // Check if all required fields are filled
+    // Validation
+    const errors = {};
     for (let i = 0; i < inputs.length; i++) {
       if (inputs[i].required && !inputs[i].value) {
-        alert('Please fill all required fields');
-        setStatus('typing');
-        return;
+        errors[inputs[i].name] = 'This field is required';
       }
     }
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      setStatus('typing');
+      return;
+    }
+
     try {
       const data = new FormData(event.currentTarget);
 
       const response = await signUp(data);
-      if (response['invalid']) {
+      if (response?.invalid) {
         setIsInvalid(true);
-        throw new Error(response);
+        throw new Error(response.invalid);  // Display specific invalid error
       }
-      if (!response.access) {
+      if (!response?.access) {
         // Handle session auth (Chrome/Safari)
         const sessionId = response.sessionId;
 
@@ -83,7 +85,7 @@ export default function SignUp() {
       }
       navigate('/');
     } catch (error) {
-      console.error('An error occured', error);
+      console.error('An error occurred', error);
       setStatus('typing');
     }
   };
@@ -116,8 +118,8 @@ export default function SignUp() {
                 id='firstName'
                 label='First Name'
                 autoFocus
-                onChange={() => setIsInvalid(false)}
-                error={isInvalid}
+                error={Boolean(validationErrors.firstName)}
+                helperText={validationErrors.firstName}
                 disabled={status === 'submitting'}
               />
             </Grid>
@@ -129,8 +131,8 @@ export default function SignUp() {
                 label='Last Name'
                 name='lastName'
                 autoComplete='family-name'
-                onChange={() => setIsInvalid(false)}
-                error={isInvalid}
+                error={Boolean(validationErrors.lastName)}
+                helperText={validationErrors.lastName}
                 disabled={status === 'submitting'}
               />
             </Grid>
@@ -142,8 +144,8 @@ export default function SignUp() {
                 label='Username'
                 name='username'
                 autoComplete='username'
-                onChange={() => setIsInvalid(false)}
-                error={isInvalid}
+                error={Boolean(validationErrors.username)}
+                helperText={validationErrors.username}
                 disabled={status === 'submitting'}
               />
             </Grid>
@@ -155,8 +157,8 @@ export default function SignUp() {
                 label='Email Address'
                 name='email'
                 autoComplete='email'
-                onChange={() => setIsInvalid(false)}
-                error={isInvalid}
+                error={Boolean(validationErrors.email)}
+                helperText={validationErrors.email}
                 disabled={status === 'submitting'}
               />
             </Grid>
@@ -169,33 +171,17 @@ export default function SignUp() {
                 type='password'
                 id='password'
                 autoComplete='new-password'
-                onChange={() => setIsInvalid(false)}
-                error={isInvalid}
+                error={Boolean(validationErrors.password)}
+                helperText={validationErrors.password}
                 disabled={status === 'submitting'}
               />
             </Grid>
-            {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
           </Grid>
-          <Grid>
-            <Grid item>
-              {isInvalid ? (
-                <Typography
-                  sx={{
-                    mt: 3,
-                    color: 'red',
-                    fontSize: { s: 'x-small', m: 'medium' },
-                  }}
-                >
-                  Username Taken and Invalid Email Address
-                </Typography>
-              ) : null}
-            </Grid>
-          </Grid>
+          {isInvalid && (
+            <Typography sx={{ mt: 3, color: 'red', fontSize: 'medium' }}>
+              Username Taken or Invalid Email Address
+            </Typography>
+          )}
           <Button
             type='submit'
             fullWidth
@@ -219,34 +205,37 @@ export default function SignUp() {
   );
 }
 
-// sends a POST request to our /signup route
 async function signUp(data) {
-  return fetch(`${import.meta.env.VITE_API_URL}register`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-    body: JSON.stringify({
-      first_name: data.get('firstName'),
-      last_name: data.get('lastName'),
-      username: data.get('username'),
-      email: data.get('email'),
-      password: data.get('password'),
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        if (response.status === 403 || response.status === 400) {
-          return { invalid: 'username taken and invalid email' };
-        }
-        throw new Error(response); // may'be another different error
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        first_name: data.get('firstName'),
+        last_name: data.get('lastName'),
+        username: data.get('username'),
+        email: data.get('email'),
+        password: data.get('password'),
+      }),
+    });
+
+    if (!response.ok) {
+      if (response.status === 403 || response.status === 400) {
+        return { invalid: 'Username taken or invalid email address' };
       }
-      return response.json().then((data) => ({
-        ...data,
-        sessionId: data.sessionId,
-        isAuthenticated: true,
-      }));
-    })
-    .catch((error) => console.error(error));
+      throw new Error('Request failed with status ' + response.status);
+    }
+
+    return await response.json().then((data) => ({
+      ...data,
+      sessionId: data.sessionId,
+      isAuthenticated: true,
+    }));
+  } catch (error) {
+    console.error('Error during sign-up:', error);
+    throw error; // rethrow error for further handling
+  }
 }

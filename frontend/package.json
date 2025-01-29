@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "private": true,
-  "proxy": "https://aestheitos-735ee07df6a7.herokuapp.com/",
+  "proxy": "https://KipNexus-735ee07df6a7.herokuapp.com/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

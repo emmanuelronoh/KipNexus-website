@@ -24,7 +24,7 @@ function Copyright(props) {
     >
       {'Copyright © '}
       <Link color='inherit' to={`/`}>
-        Aestheitos
+      KipNexus
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

@@ -3,7 +3,7 @@
     "Access-Control-Allow-Credentials": "true", 
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization, X-CSRF-Token",
-    "Access-Control-Allow-Origin": "https://api.aestheitos.pro",
+    "Access-Control-Allow-Origin": "https://api.KipNexus.pro",
     "Access-Control-Expose-Headers": "Set-Cookie"
   },
     "navigationFallback": {

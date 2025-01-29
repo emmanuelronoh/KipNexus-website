@@ -28,7 +28,7 @@ export default function Privacy() {
               Introduction
             </Typography>
             <Typography variant='p'>
-              <b>Aestheitos</b> is committed to protecting the privacy of our
+              <b>KipNexus</b> is committed to protecting the privacy of our
               users (you). This Privacy Policy explains how we collect, use,
               disclose, and safeguard your information when you use our online
               learning platform and management system the 'Platform'.

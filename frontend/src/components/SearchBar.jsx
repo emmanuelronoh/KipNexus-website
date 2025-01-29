@@ -32,6 +32,7 @@ export default function SearchBar({ isOpen, setIsOpen }) {
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
+
   return isSmallScreen ? (
     <>
       <Grid item xs={4} sm>
@@ -81,10 +82,12 @@ function SearchInput() {
   const isMediumScreen = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   const { courses } = useLoaderData();
-  // Safe access to courses data
-  const approvedCourses =
-    Array.isArray(courses) && courses.filter((course) => course.status === 'A');
-  // const validCourses = courses?.results || [];
+
+  // Ensure courses is an array before filtering
+  const approvedCourses = Array.isArray(courses)
+    ? courses.filter((course) => course.status === 'A')
+    : [];
+
   return (
     <Search>
       <List sx={{ padding: 0 }}>
@@ -107,7 +110,7 @@ function SearchInput() {
                 startAdornment: (
                   <InputAdornment position='start'>
                     <SearchIcon
-                      sx={{ color: isSmallScreen ? 'intial' : 'white' }}
+                      sx={{ color: isSmallScreen ? 'initial' : 'white' }}
                     />
                   </InputAdornment>
                 ),
@@ -154,6 +157,7 @@ function SearchInput() {
     </Search>
   );
 }
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -188,7 +192,7 @@ const StyledTextField = styled((props) => {
       {...props}
       sx={{
         '& .MuiInputBase-input': {
-          color: isSmallScreen ? 'intial' : 'white',
+          color: isSmallScreen ? 'initial' : 'white',
           '&:focus': {
             width: isMediumScreen ? '30ch' : '20ch',
           },

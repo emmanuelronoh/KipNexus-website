@@ -30,7 +30,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import logo from '/images/aestheitoslogo.png';
+import logo from '/images/KipNexuslogo.png';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import SearchBar from './SearchBar';
 import CheckIcon from '@mui/icons-material/Check';
@@ -66,9 +66,9 @@ function ResponsiveAppBar() {
   const isAuthenticated = token.isAuthenticated;
   const navigate = useNavigate();
   const { user, courses } = useLoaderData(); // loader is in root.jsx
-  const userCourses = courses.filter(
+  const userCourses = Array.isArray(courses) ? courses.filter(
     (course) => course.created_by === user.user_id && course.status !== 'P'
-  ); // just return THE user's or instructor's courses for notifcation purposes.
+  ) : [];
 
   const profilePic = useAtomValue(profilePictureAtom || '');
   const [firstClick, setFirstClick] = React.useState(true);
@@ -169,7 +169,7 @@ function ResponsiveAppBar() {
                   textDecoration: 'none',
                 }}
               >
-                Aestheitos
+                KipNexus
               </Typography>
             </Link>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -220,7 +220,7 @@ function ResponsiveAppBar() {
                 textDecoration: 'none',
               }}
             >
-              Aestheitos
+              KipNexus
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) =>
@@ -276,6 +276,7 @@ function ResponsiveAppBar() {
                       >
                         <NotificationsOutlinedIcon />
                       </Badge>
+
                     </IconButton>
                     <Popover
                       open={Boolean(anchorElBadge)}
@@ -331,10 +332,10 @@ function ResponsiveAppBar() {
                                           {`Your Course has been ${course.status === 'A' ? 'Approved' : 'Rejected'}`}
                                           <br />
                                           {last_updated_day === 0 &&
-                                          last_updated_hour <= 1
+                                            last_updated_hour <= 1
                                             ? `${last_updated_minute} minutes ago`
                                             : last_updated_day === 0 &&
-                                                last_updated_hour <= 24
+                                              last_updated_hour <= 24
                                               ? `${last_updated_hour} hours ago`
                                               : `${last_updated_day} days ago`}
                                         </>
